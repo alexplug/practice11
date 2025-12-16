@@ -1,7 +1,3 @@
-// Practice 10 — простая интерактивная галерея
-// Требования: createElement, appendChild, remove, setAttribute/removeAttribute,
-// classList.add/remove/toggle, события click/input/keydown/mouseover, if/else.
-
 // -------------------- 1) Находим элементы --------------------
 const titleInput = document.getElementById('artifact-title');
 const categoryInput = document.getElementById('artifact-category');
@@ -24,16 +20,15 @@ const modalTitle = document.getElementById('modalTitle');
 const modalCategory = document.getElementById('modalCategory');
 const modalFav = document.getElementById('modalFav');
 
-// -------------------- 2) Переменные состояния --------------------
-let categoryList = ['all'];       // all = "Все"
-let activeCategory = 'all';       // текущая выбранная категория
+let categoryList = ['all'];       
+let activeCategory = 'all';       
 
-// -------------------- 3) Вспомогательные функции --------------------
+
 function showBanner(text){
   banner.textContent = text;
   banner.classList.remove('hidden');
 
-  // просто: баннер прячется через 2 секунды
+
   setTimeout(function(){
     banner.classList.add('hidden');
   }, 2000);
@@ -93,6 +88,29 @@ function addCategory(categoryValue){
     });
 
     categoriesBox.appendChild(chip);
+  }
+}
+
+
+function removeCategoryIfUnused(categoryLower){
+  if (!categoryLower || categoryLower === 'all') return;
+
+
+  const stillExists = gallery.querySelector('.card[data-category="' + categoryLower + '"]');
+  if (stillExists) return;
+
+
+  const chip = categoriesBox.querySelector('[data-category="' + categoryLower + '"]');
+  if (chip) chip.remove();
+
+  
+  const idx = categoryList.indexOf(categoryLower);
+  if (idx !== -1) categoryList.splice(idx, 1);
+
+
+  if (activeCategory === categoryLower) {
+    activeCategory = 'all';
+    setActiveChip('all');
   }
 }
 
@@ -174,13 +192,19 @@ function createCard(title, category, imageUrl){
   });
 
   // --- удаление ---
+  // ✅ ИЗМЕНЕНО: после удаления карточки удаляем категорию, если она больше не используется
   delBtn.addEventListener('click', function(e){
     e.stopPropagation();
+
+    const cat = card.getAttribute('data-category'); 
     card.remove();
+
+    removeCategoryIfUnused(cat);
+
     updateCounter();
+    applyFilters();
   });
 
-  // --- подсветка при наведении ---
   card.addEventListener('mouseover', function(){
     card.classList.add('hover');
   });
@@ -189,7 +213,7 @@ function createCard(title, category, imageUrl){
     card.classList.remove('hover');
   });
 
-  // --- модальное окно (детализация) ---
+
   card.addEventListener('click', function(){
     openModal(card, title, category, imageUrl);
   });
@@ -227,7 +251,7 @@ function closeModal(){
   modalOverlay.classList.add('hidden');
 }
 
-// -------------------- 5) События формы и фильтров --------------------
+
 addBtn.addEventListener('click', function(){
   const title = titleInput.value.trim();
   const category = categoryInput.value.trim();
