@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Practice 10 — Галерея артефактов</title>
   <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body class="light-theme">
   <header class="header">
@@ -16,7 +16,7 @@
 
     <div class="header__right">
       <div class="counter">Всего: <span id="counter">0</span></div>
-      <button id="themeBtn" class="btn btn--line">Тема</button>
+      <button id="themeBtn" class="btn btn--line" type="button">Тема</button>
     </div>
   </header>
 
@@ -29,32 +29,32 @@
       <div class="add-form">
         <div class="field">
           <label class="label" for="artifact-title">Название</label>
-          <input id="artifact-title" class="input" placeholder="Например: Смартфон">
+          <input id="artifact-title" class="input" type="text" placeholder="Например: Смартфон">
         </div>
 
         <div class="field">
           <label class="label" for="artifact-category">Категория</label>
-          <input id="artifact-category" class="input" placeholder="Например: Техника">
+          <input id="artifact-category" class="input" type="text" placeholder="Например: Техника">
         </div>
 
         <div class="field field--wide">
           <label class="label" for="artifact-image">URL изображения</label>
-          <input id="artifact-image" class="input" placeholder="https://...">
+          <input id="artifact-image" class="input" type="text" placeholder="https://...">
         </div>
 
-        <button id="add-btn" class="btn btn--dark">Добавить артефакт</button>
+        <button id="add-btn" class="btn btn--dark" type="button">Добавить артефакт</button>
       </div>
 
       <div class="filters">
         <div class="field field--wide">
           <label class="label" for="search">Поиск по названию</label>
-          <input id="search" class="input" placeholder="Введите текст для фильтра...">
+          <input id="search" class="input" type="text" placeholder="Введите текст для фильтра...">
         </div>
 
         <div class="categories">
           <span class="categories__label">Категории:</span>
           <div id="categories" class="categories__list">
-            <button class="chip chip--active" data-category="all">Все</button>
+            <button class="chip chip--active" data-category="all" type="button">Все</button>
           </div>
         </div>
       </div>
@@ -66,11 +66,16 @@
 
   <!-- Модальное окно (детализация) -->
   <div id="modalOverlay" class="modal-overlay hidden">
-    <div class="modal">
-      <button id="modalClose" class="modal__close" aria-label="Закрыть">×</button>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Информация об артефакте">
+      <button id="modalClose" class="modal__close" type="button" aria-label="Закрыть">×</button>
 
       <div class="modal__media">
-        <img id="modalImg" alt="Изображение артефакта">
+
+        <img
+          id="modalImg"
+          src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+          alt="Изображение артефакта"
+        >
       </div>
 
       <h2 id="modalTitle" class="modal__title">Заголовок</h2>
