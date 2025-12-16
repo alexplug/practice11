@@ -1,0 +1,418 @@
+/* =========================
+   Minimal grayscale UI
+   (без градиентов)
+   ========================= */
+
+* { box-sizing: border-box; }
+
+body{
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* темы */
+body.light-theme{
+  background: #f2f2f2;
+  color: #111;
+}
+
+body.dark-theme{
+  background: #111;
+  color: #f2f2f2;
+}
+
+.header{
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 18px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.title{
+  margin: 0;
+  font-size: 22px;
+}
+
+.subtitle{
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+body.dark-theme .subtitle{
+  color: #aaa;
+}
+
+.header__right{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.counter{
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+}
+
+body.dark-theme .counter{
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+}
+
+.container{
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 16px 30px;
+}
+
+.panel{
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+body.dark-theme .panel{
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+}
+
+/* баннер */
+.banner{
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #111;
+}
+
+body.dark-theme .banner{
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+  color: #f2f2f2;
+}
+
+.hidden{ display: none !important; }
+
+/* форма */
+.add-form{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+}
+
+.field{
+  width: 220px;
+}
+
+.field--wide{
+  flex: 1;
+  min-width: 260px;
+}
+
+.label{
+  display: block;
+  font-size: 12px;
+  margin-bottom: 6px;
+  color: #666;
+}
+
+body.dark-theme .label{
+  color: #aaa;
+}
+
+.input{
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  outline: none;
+}
+
+body.dark-theme .input{
+  background: #111;
+  border-color: #2a2a2a;
+  color: #f2f2f2;
+}
+
+.input:focus{
+  border-color: #999;
+}
+
+.input.invalid{
+  border-color: #d44;
+}
+
+/* кнопки */
+.btn{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn--dark{
+  background: #111;
+  color: #fff;
+}
+
+body.dark-theme .btn--dark{
+  background: #f2f2f2;
+  color: #111;
+}
+
+.btn--line{
+  background: transparent;
+  border-color: #ddd;
+  color: inherit;
+}
+
+body.dark-theme .btn--line{
+  border-color: #2a2a2a;
+}
+
+.btn:hover{ opacity: 0.9; }
+
+.filters{
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* категории */
+.categories{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.categories__label{
+  font-size: 12px;
+  color: #666;
+}
+
+body.dark-theme .categories__label{
+  color: #aaa;
+}
+
+.categories__list{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip{
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  color: inherit;
+}
+
+body.dark-theme .chip{
+  border-color: #2a2a2a;
+}
+
+.chip--active{
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+body.dark-theme .chip--active{
+  background: #f2f2f2;
+  color: #111;
+  border-color: #f2f2f2;
+}
+
+/* галерея */
+.gallery{
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 900px){
+  .gallery{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px){
+  .gallery{ grid-template-columns: 1fr; }
+}
+
+.card{
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+  cursor: pointer;
+}
+
+body.dark-theme .card{
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+}
+
+.card.hover{
+  border-color: #999;
+}
+
+.card__img{
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  background: #e9e9e9;
+}
+
+body.dark-theme .card__img{
+  background: #222;
+}
+
+.card__body{
+  padding: 12px;
+}
+
+.card__title{
+  margin: 0;
+  font-size: 16px;
+}
+
+.card__cat{
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+body.dark-theme .card__cat{
+  color: #aaa;
+}
+
+.card__actions{
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.small-btn{
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  color: inherit;
+}
+
+body.dark-theme .small-btn{
+  border-color: #2a2a2a;
+}
+
+.small-btn:hover{ opacity: 0.9; }
+
+.card.favorite{
+  border-color: #111;
+}
+
+body.dark-theme .card.favorite{
+  border-color: #f2f2f2;
+}
+
+/* модалка */
+.modal-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+}
+
+.modal{
+  width: min(520px, 92vw);
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #ddd;
+  padding: 14px;
+  position: relative;
+}
+
+body.dark-theme .modal{
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+  color: #f2f2f2;
+}
+
+.modal__close{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  color: inherit;
+}
+
+body.dark-theme .modal__close{
+  border-color: #2a2a2a;
+}
+
+.modal__media{
+  width: 100%;
+  height: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background: #e9e9e9;
+}
+
+body.dark-theme .modal__media{
+  border-color: #2a2a2a;
+  background: #222;
+}
+
+.modal__media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal__title{
+  margin: 12px 0 6px;
+  font-size: 18px;
+}
+
+.modal__text{
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #666;
+}
+
+body.dark-theme .modal__text{
+  color: #aaa;
+}
